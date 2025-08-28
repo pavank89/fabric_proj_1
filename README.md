@@ -16,20 +16,6 @@ This project follows **Page Object Model (POM)** design pattern and includes:
 
 
 
-parabank-playwright-framework-v2/
-│── package.json
-│── playwright.config.js # Playwright configuration
-│
-├── pages/ # Page Object classes
-│ ├── BasePage.js
-│ └── ParaBank.js
-│
-├── tests/
-│ └── e2e/
-│ └── parabank.spec.js # Main E2E test flow
-│
-└── utils/
-└── data.js # Test data & helpers
 
 
 ---
