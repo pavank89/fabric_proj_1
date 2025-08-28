@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    tools {
+        nodejs "NodeJS"   // Make sure you have NodeJS installed & configured in Jenkins global tools
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+                sh 'npx playwright install --with-deps'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'npx playwright test'
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
+            junit 'playwright-report/results.xml'  // if you configure junit reporter
+        }
+    }
+}
